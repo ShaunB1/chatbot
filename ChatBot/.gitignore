@@ -3,3 +3,4 @@ obj/
 
 *.nuget.info
 .idea/
+.env
