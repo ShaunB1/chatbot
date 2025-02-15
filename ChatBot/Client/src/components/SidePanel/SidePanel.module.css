@@ -1,0 +1,32 @@
+.sidePanelButton {
+    background: none;
+    border: none;
+    padding: 12px 32px;
+    width: 175px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: "Roboto Light", sans-serif;
+}
+
+.sidePanelButton:hover {
+    background: lightblue;
+    cursor: pointer;
+    transition: background 0.5s ease;
+}
+
+.collapseButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.collapseButton:hover {
+    background: lightgray;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
