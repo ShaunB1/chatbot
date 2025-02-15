@@ -1,16 +1,21 @@
 using System.Text;
 using System.Text.Json;
+using DotNetEnv;
 
 namespace ChatBot.Infrastructure.AiConnector.Services;
 
 public class AiService
 {
     private readonly HttpClient _httpClient;
-    private readonly string _apiKey = "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";
-
+    private readonly string _apiKey;
+    
     public AiService(HttpClient httpClient)
     {
         _httpClient = httpClient;
+        
+        Env.Load();
+        
+        _apiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY") ?? throw new Exception("API key is missing.");
     }
 
     public async Task<string?> GetResponseAsync(string prompt)
