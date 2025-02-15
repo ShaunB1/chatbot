@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TZgxT0KgICZkPWnyo9ONFbQ15JhTCzIi2ZOjf8MSTfk=",
+  "Hash": "q+EOT5wFQnygnaa6xzEZ9usGuA+kGrMIw1uY20XyCaM=",
   "Source": "ChatBot",
   "BasePath": "_content/ChatBot",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\shaun\\Desktop\\Projects\\ChatBot\\ChatBot\\wwwroot\\assets\\index-BLkQLt1V.js",
+      "Identity": "C:\\Users\\shaun\\Desktop\\Projects\\ChatBot\\ChatBot\\wwwroot\\assets\\index-B6jGIfkg.css",
       "SourceId": "ChatBot",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\shaun\\Desktop\\Projects\\ChatBot\\ChatBot\\wwwroot\\",
       "BasePath": "_content/ChatBot",
-      "RelativePath": "assets/index-BLkQLt1V.js",
+      "RelativePath": "assets/index-B6jGIfkg.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -33,15 +33,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\index-BLkQLt1V.js"
+      "OriginalItemSpec": "wwwroot\\assets\\index-B6jGIfkg.css"
     },
     {
-      "Identity": "C:\\Users\\shaun\\Desktop\\Projects\\ChatBot\\ChatBot\\wwwroot\\assets\\index-n_ryQ3BS.css",
+      "Identity": "C:\\Users\\shaun\\Desktop\\Projects\\ChatBot\\ChatBot\\wwwroot\\assets\\index-CzTrGB8x.js",
       "SourceId": "ChatBot",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\shaun\\Desktop\\Projects\\ChatBot\\ChatBot\\wwwroot\\",
       "BasePath": "_content/ChatBot",
-      "RelativePath": "assets/index-n_ryQ3BS.css",
+      "RelativePath": "assets/index-CzTrGB8x.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -52,26 +52,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\index-n_ryQ3BS.css"
-    },
-    {
-      "Identity": "C:\\Users\\shaun\\Desktop\\Projects\\ChatBot\\ChatBot\\wwwroot\\assets\\react-CHdo91hT.svg",
-      "SourceId": "ChatBot",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\shaun\\Desktop\\Projects\\ChatBot\\ChatBot\\wwwroot\\",
-      "BasePath": "_content/ChatBot",
-      "RelativePath": "assets/react-CHdo91hT.svg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\react-CHdo91hT.svg"
+      "OriginalItemSpec": "wwwroot\\assets\\index-CzTrGB8x.js"
     },
     {
       "Identity": "C:\\Users\\shaun\\Desktop\\Projects\\ChatBot\\ChatBot\\wwwroot\\index.html",

@@ -29,3 +29,8 @@ C:\Users\shaun\Desktop\Projects\ChatBot\ChatBot\obj\Debug\net8.0\refint\ChatBot.
 C:\Users\shaun\Desktop\Projects\ChatBot\ChatBot\obj\Debug\net8.0\ChatBot.pdb
 C:\Users\shaun\Desktop\Projects\ChatBot\ChatBot\obj\Debug\net8.0\ChatBot.genruntimeconfig.cache
 C:\Users\shaun\Desktop\Projects\ChatBot\ChatBot\obj\Debug\net8.0\ref\ChatBot.dll
+C:\Users\shaun\Desktop\Projects\ChatBot\ChatBot\bin\Debug\net8.0\OpenAI.dll
+C:\Users\shaun\Desktop\Projects\ChatBot\ChatBot\bin\Debug\net8.0\System.ClientModel.dll
+C:\Users\shaun\Desktop\Projects\ChatBot\ChatBot\bin\Debug\net8.0\System.Memory.Data.dll
+C:\Users\shaun\Desktop\Projects\ChatBot\ChatBot\obj\Debug\net8.0\ChatBot.csproj.AssemblyReference.cache
+C:\Users\shaun\Desktop\Projects\ChatBot\ChatBot\obj\Debug\net8.0\ChatBot.csproj.Up2Date
