@@ -13,10 +13,7 @@ interface Message {
 
 const ChatPage = () => {
     const url = "http://localhost:5292/api/ai/chat"
-    const [messages, setMessages] = useState<Message[]>([
-        { role: "user", message: "### Markdown example." },
-        { role: "system", message: "### Markdown example" },
-    ]);
+    const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState<string>("");
 
     const handleEnterKey = async (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
