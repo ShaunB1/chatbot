@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
@@ -10,10 +10,35 @@ interface Message {
     message: string;
 }
 
+interface Chat {
+    id: string;
+    message: string;
+    role: string;
+}
+
 const ChatPage = () => {
-    const url = "http://localhost:5292/api/ai/chat"
+    const url = "http://localhost:5292/api/ai/chat";
+    const dbUrl = "http://localhost:5292/api/db/history";
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState<string>("");
+
+    useEffect(() => {
+        fetch(dbUrl)
+            .then((response) => response.json())
+            .then((data: Chat[]) => {
+                const temp = [...messages];
+                data.forEach((chat: Chat) => {
+                    const msgObj = {
+                        role: chat.role,
+                        message: chat.message,
+                    }
+                    temp.push(msgObj);
+                });
+
+                setMessages(temp);
+            })
+            .catch((error) => console.error("Error fetching chat history: ", error))
+    }, []);
 
     const handleEnterKey = async (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
         try {

@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using ChatBot.Infrastructure.ExternalApis.AiConnector.Controllers;
 using DotNetEnv;
 
 namespace ChatBot.Infrastructure.ExternalApis.AiConnector.Services;
@@ -23,13 +24,8 @@ public class AiService
             new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", apiKey);
     }
 
-    public async Task<string?> GetResponseAsync(string prompt)
+    public async Task<string?> GetResponseAsync(List<Message> chatMessages)
     {
-        if (string.IsNullOrWhiteSpace(prompt))
-        {
-            throw new ArgumentException("Prompt is missing.");
-        }
-        
         try
         {
             const string systemContent = @"Please respond in raw Markdown format without triple backticks unless 
@@ -44,8 +40,8 @@ public class AiService
                 messages = new[]
                 {
                     new { role = "system", content = systemContent },
-                    new { role = "user", content = prompt }
-                },
+                }
+                .Concat<object>(chatMessages.Select(msg => new { role = msg.role, content = msg.message }))
             };
 
             var requestContent = new StringContent(
