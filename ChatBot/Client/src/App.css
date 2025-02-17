@@ -2,10 +2,27 @@ html, body {
     padding: 0;
     margin: 0;
     height: 100%;
-    background: antiquewhite;
+    background: #212121;
     overflow: hidden;
 }
 
 p {
     margin: 0;
+}
+
+::-webkit-scrollbar {
+    width: 8px; /* Adjust width as needed */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; /* Removes background */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scroll thumb */
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Darken on hover */
 }

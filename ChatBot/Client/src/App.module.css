@@ -1,0 +1,10 @@
+.routesContainer {
+    position: relative;
+    display: flex;
+    width: calc(100vw - 226px);
+    height: calc(100vh - 93px);
+    left: 202px;
+    top: 69px;
+    padding: 12px;
+    overflow: hidden;
+}

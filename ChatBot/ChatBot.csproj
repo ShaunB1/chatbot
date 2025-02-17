@@ -17,7 +17,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Infrastructure\ExternalApis\" />
       <Folder Include="Models\" />
+      <Folder Include="Modules\" />
     </ItemGroup>
 
     <ItemGroup>
