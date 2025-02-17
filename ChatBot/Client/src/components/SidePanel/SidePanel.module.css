@@ -1,3 +1,28 @@
+.sidepanelContainer {
+    width: 200px;
+    overflow: hidden;
+    position: fixed;
+    top: 66px;
+    height: 100vh;
+    background: black;
+}
+
+.routesContainer {
+    height: 86%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding-top: 12px;
+}
+
+.footerContainer {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    right: 15px;
+}
+
 .sidePanelButton {
     background: none;
     border: none;
@@ -6,6 +31,7 @@
     border-radius: 5px;
     font-size: 16px;
     font-family: "Roboto Light", sans-serif;
+    color: white;
 }
 
 .sidePanelButton:hover {

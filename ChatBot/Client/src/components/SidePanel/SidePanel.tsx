@@ -7,38 +7,29 @@ const SidePanel = () => {
 
     return (
         <>
-            <div
-                style={{
-                    width: "200px",
-                    overflow: "hidden",
-                    position: "fixed",
-                    top: "66px",
-                    height: "100vh",
-                    background: "white",
-                }}
-            >
-                <div
-                    style={{
-                        height: "86%",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        gap: "12px",
-                        paddingTop: "12px",
-                    }}
-                >
-                    <button className={SidePanelCSS.sidePanelButton} onClick={() => navigate("/")}>Home</button>
-                    <button className={SidePanelCSS.sidePanelButton} onClick={() => navigate("/chat")}>Chat</button>
+            <div className={SidePanelCSS.sidepanelContainer}>
+                <div className={SidePanelCSS.routesContainer}>
+                    <button
+                        className={SidePanelCSS.sidePanelButton}
+                        onClick={() => navigate("/")}
+                        aria-label="Navigate to Home"
+                    >
+                        Home
+                    </button>
+                    <button
+                        className={SidePanelCSS.sidePanelButton}
+                        onClick={() => navigate("/chat")}
+                        aria-label="Navigate to Chat"
+                    >
+                        Chat
+                    </button>
                 </div>
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "flex-end",
-                        position: "relative",
-                        right: "15px",
-                    }}
-                >
-                    <button className={SidePanelCSS.collapseButton} id="collapse-button">
+                <div className={SidePanelCSS.footerContainer}>
+                    <button
+                        className={SidePanelCSS.collapseButton}
+                        id="collapse-button"
+                        aria-label="Collapse Sidepanel"
+                    >
                         <KeyboardDoubleArrowLeft sx={{ color: "gray" }} />
                     </button>
                 </div>

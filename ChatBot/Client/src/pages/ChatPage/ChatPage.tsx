@@ -1,10 +1,9 @@
-import {Send} from "@mui/icons-material";
-import {IconButton} from "@mui/material";
 import {useState} from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
+import ChatPageCSS from "./ChatPage.module.css";
 
 interface Message {
     role: string;
@@ -17,13 +16,17 @@ const ChatPage = () => {
     const [input, setInput] = useState<string>("");
 
     const handleEnterKey = async (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        if (event.key === "Enter") {
-            if (event.shiftKey) {
-                return;
-            } else {
-                event.preventDefault();
-                await getAiResponse(input);
+        try {
+            if (event.key === "Enter") {
+                if (event.shiftKey) {
+                    return;
+                } else {
+                    event.preventDefault();
+                    await getAiResponse(input);
+                }
             }
+        } catch (error) {
+            console.error(error);
         }
     }
 
@@ -59,39 +62,14 @@ const ChatPage = () => {
 
     return (
         <>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "85%",
-                    gap: "10px",
-                }}
-            >
-                <div
-                    style={{
-                        height: "73%",
-                        background: "black",
-                        color: "white",
-                        padding: "20px",
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "12px",
-                        fontFamily: "Roboto",
-                        fontSize: "16px",
-                        overflow: "auto"
-                    }}
-                >
+            <div className={ChatPageCSS.rootContainer}>
+                <div className={ChatPageCSS.mainContainer}>
                     {messages.map((message, index) => (
                         message.role === "system" ? (
                             <div
                                 key={index}
-                                style={{
-                                    width: "98.5%",
-                                    padding: "10px",
-                                    borderRadius: "5px",
-                                }}
                             >
-                                <div style={{ whiteSpace: "pre-wrap", fontFamily: "monospace", fontSize: "16px" }}>
+                                <div>
                                     <ReactMarkdown
                                         remarkPlugins={[remarkGfm]}
                                         rehypePlugins={[rehypeHighlight]}
@@ -101,23 +79,9 @@ const ChatPage = () => {
                                 </div>
                             </div>
                         ) : (
-                            <div
-                                key={index}
-                                style={{
-                                    width: "100%",
-                                    display: "flex",
-                                    justifyContent: "flex-end",
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        width: "400px",
-                                        background: "gray",
-                                        padding: "10px",
-                                        borderRadius: "10px",
-                                    }}
-                                >
-                                    <div style={{ whiteSpace: "pre-wrap", fontFamily: "monospace", fontSize: "16px" }}>
+                            <div key={index} className={ChatPageCSS.userMessageContainer}>
+                                <div className={ChatPageCSS.userContainer}>
+                                    <div style={{ whiteSpace: "pre-wrap" }}>
                                         <ReactMarkdown
                                             remarkPlugins={[remarkGfm]}
                                             rehypePlugins={[rehypeHighlight]}
@@ -130,34 +94,15 @@ const ChatPage = () => {
                         )
                     ))}
                 </div>
-                <div
-                    style={{
-                        width: "100%",
-                        background: "white",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "10px",
-                        borderRadius: "10px",
-                        padding: "20px 20px",
-                    }}
-                >
+                <div className={ChatPageCSS.promptBarContainer}>
                     <textarea
                         wrap="soft"
+                        className={ChatPageCSS.promptBar}
+                        placeholder="Message AI Model"
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={handleEnterKey}
                         value={input}
-                        style={{
-                            all: "unset",
-                            width: "100%",
-                            height: "100px",
-                            overflowY: "auto",
-                            fontFamily: "Roboto",
-                            fontSize: "16px",
-                        }}
                     />
-                    <IconButton onClick={() => getAiResponse(input)}>
-                        <Send fontSize="small" />
-                    </IconButton>
                 </div>
             </div>
         </>
