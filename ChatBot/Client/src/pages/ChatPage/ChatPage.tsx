@@ -18,7 +18,11 @@ interface Chat {
     role: string;
 }
 
-const ChatPage = () => {
+interface ChatPageProps {
+    model: string;
+}
+
+const ChatPage: React.FC<ChatPageProps> = ({ model }) => {
     const url = "http://localhost:5292/api/ai/chat";
     const dbUrl = "http://localhost:5292/api/db/history";
     const [messages, setMessages] = useState<Message[]>([]);
@@ -88,16 +92,19 @@ const ChatPage = () => {
             const promptObject = {
                 message: prompt,
                 role: "user",
+                model: model,
             }
 
             setMessages(prevMessages => [...prevMessages, promptObject]);
+
+            console.log(model);
 
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ prompt })
+                body: JSON.stringify({ ...promptObject }),
             });
 
             if (!response.ok) {
