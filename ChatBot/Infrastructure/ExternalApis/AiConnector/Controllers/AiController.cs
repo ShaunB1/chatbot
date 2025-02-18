@@ -38,15 +38,15 @@ public class AiController : ControllerBase
             var jsonString = await dbResponse.Content.ReadAsStringAsync();
             var data = JsonSerializer.Deserialize<List<Message>>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             
-            if (string.IsNullOrWhiteSpace(request.Prompt))
+            if (string.IsNullOrWhiteSpace(request.Message))
             {
                 return BadRequest(new { error = "Prompt cannot be empty." });
             }
             
             data ??= new List<Message>();
-            data.Add(new Message { message = request.Prompt, role = "user" });
+            data.Add(new Message { message = request.Message, role = request.Role });
         
-            var response = await _aiService.GetResponseAsync(data);
+            var response = await _aiService.GetResponseAsync(request.Model, data);
             return Ok(response);
         }
         catch (Exception ex)
