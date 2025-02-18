@@ -4,6 +4,8 @@ import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
 import ChatPageCSS from "./ChatPage.module.css";
+import {IconButton, Tooltip} from "@mui/material";
+import {Delete} from "@mui/icons-material";
 
 interface Message {
     role: string;
@@ -24,9 +26,18 @@ const ChatPage = () => {
 
     useEffect(() => {
         fetch(dbUrl)
-            .then((response) => response.json())
-            .then((data: Chat[]) => {
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+            })
+            .then((data: Chat[] | void) => {
+                if (!data) {
+                    return;
+                }
+
                 const temp = [...messages];
+
                 data.forEach((chat: Chat) => {
                     const msgObj = {
                         role: chat.role,
@@ -55,14 +66,30 @@ const ChatPage = () => {
         }
     }
 
+    const handleDeleteHistory = async () => {
+        try {
+            const response = await fetch(dbUrl, {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+            });
+
+            await response.json();
+
+            setMessages([]);
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
+
     const getAiResponse = async (prompt: string) => {
         try {
+            setInput("");
+
             const promptObject = {
-                role: "user",
                 message: prompt,
+                role: "user",
             }
 
-            setInput("");
             setMessages(prevMessages => [...prevMessages, promptObject]);
 
             const response = await fetch(url, {
@@ -70,13 +97,37 @@ const ChatPage = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ prompt: prompt })
+                body: JSON.stringify({ prompt })
             });
+
+            if (!response.ok) {
+                console.error("Failed to generate a response.")
+            }
 
             const data = await response.text();
             const responseObject = {
+                message: data,
                 role: "system",
-                message: data
+            }
+
+            const userResponse = await fetch (dbUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(promptObject),
+            });
+
+            if (!userResponse.ok) {
+                console.error("Failed to save user prompt to chat history.")
+            }
+
+            const dbResponse = await fetch (dbUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(responseObject),
+            });
+
+            if (!dbResponse.ok) {
+                console.error("Failed to save the system prompt to chat history.")
             }
 
             setMessages(prevMessages => [...prevMessages, responseObject]);
@@ -128,6 +179,11 @@ const ChatPage = () => {
                         onKeyDown={handleEnterKey}
                         value={input}
                     />
+                    <Tooltip title="Delete Chat History" placement="top">
+                        <IconButton onClick={handleDeleteHistory}>
+                            <Delete sx={{ color: "red" }} />
+                        </IconButton>
+                    </Tooltip>
                 </div>
             </div>
         </>
